@@ -2,7 +2,7 @@ node{
   stage('SCM Checkout'){
   // Behind the scenes it calls git groovy function with our arguments
    git credentialsId: 'github', 
-       url: 'https://github.com/javahometech/my-app',
+       url: 'https://github.com/msredd100/my-app',
        branch: 'master'
   }
   stage('Maven Package'){
@@ -15,7 +15,7 @@ node{
     sh 'mv target/myweb*.war target/myweb.war'
    
     sshagent(['tomcat-dev']) {
-         def tomcatIp='172.31.14.149'
+         def tomcatIp='172.31.20.192'
          def tomcatUsr='ec2-user'
          def stopTomcat = "${tomcatUsr}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
          def startTomcat = "${tomcatUsr}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
